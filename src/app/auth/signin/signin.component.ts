@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
+import { Router } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-signin',
@@ -12,10 +18,17 @@ export class SigninComponent implements OnInit {
   email: any;
   password: any;
 
-  constructor(private authService: AuthenticationService) {
+  options: AnimationOptions = {
+    path: '/assets/lottie/login.json',
+  };
+  constructor(private authService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit() { /* There is no method which run on page load */ }
+
+  animationCreated(animationItem: AnimationItem): void {
+    console.log(animationItem);
+  }
 
   login() {
     // Perform login logic here
@@ -27,6 +40,9 @@ export class SigninComponent implements OnInit {
       console.log("Email Password Response==========>", res)
 
       if (res.length != 0) {
+        if(res[0]['UserRole'] == 'Admin'){
+          this.router.navigate(['/admin'])
+        }
         this.authService.presentToast('Login Success', 'success').then(() => {
         }).catch((err) => {
         });

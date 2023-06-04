@@ -10,11 +10,17 @@ import { environment } from 'src/environments/environment';
 import {provideFirebaseApp, initializeApp} from '@angular/fire/app'
 import {getFirestore, provideFirestore} from '@angular/fire/firestore'
 import { HeaderComponent } from './helper/header/header.component';
+import { LottieModule } from 'ngx-lottie';
+
+export function playerFactory() {
+  return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
+}
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, provideFirebaseApp(()=>initializeApp(environment.firebaseConfig)),
-  provideFirestore(()=>getFirestore())
+  provideFirestore(()=>getFirestore()),
+  LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

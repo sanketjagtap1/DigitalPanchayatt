@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AnimationOptions } from 'ngx-lottie';
+import { AnimationItem } from 'lottie-web';
 
 @Component({
   selector: 'app-signup',
@@ -15,10 +17,19 @@ export class SignupComponent implements OnInit {
   firstName: any;
   lastName: any;
   mobile: any;
+
+  options: AnimationOptions = {
+    path: '/assets/lottie/login.json',
+  };
   constructor(private authService: AuthenticationService, private router: Router) { }
   @ViewChild('signupForm') signupForm!: NgForm;
 
   ngOnInit() { /* TODO document why this method 'ngOnInit' is empty */ }
+
+
+  animationCreated(animationItem: AnimationItem): void {
+    console.log(animationItem);
+  }
 
   signUp(user: any) {
     // check if user is already present
