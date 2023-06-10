@@ -37,3 +37,16 @@
 .title {
    text-transform: uppercase;
 }
+
+ion-item {
+   --background: rgba(255, 0, 0, 0);
+
+   ion-input,
+   ion-button {
+       margin: 20px 0px 0px;
+   }
+
+   ion-text {
+       font-size: 12px !important;
+   }
+}
