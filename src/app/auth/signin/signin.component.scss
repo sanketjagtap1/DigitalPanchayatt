@@ -1,9 +1,9 @@
 .wrapper {
-    height: calc(100vh - 300px) ;
+    height: calc(100vh ) ;
     display: flex;
-    // flex-direction: column;
+    flex-direction: column;
     justify-content: center;
-    // align-items: center;
+    align-items: center;
 
     ion-item {
         --background: rgba(255, 0, 0, 0);

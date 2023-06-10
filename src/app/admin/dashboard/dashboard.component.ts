@@ -5,10 +5,41 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent  implements OnInit {
+export class DashboardComponent implements OnInit {
+
+  data: any;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.data = [
+      {
+        route: "staff",
+        userType: "Staff",
+        count: 34,
+        userData: [
+          {
+            fname: "Sanket",
+            lname: "Jagtap",
+            mobile: 8806328987,
+            email: "sanketjagtap479@gmail.com",
+          }
+        ]
+      },
+      {
+        route: "user",
+        userType: "User",
+        count: 84,
+        userData: [
+          {
+            fname: "Sanket",
+            lname: "Jagtap",
+            mobile: 8806328987,
+            email: "sanketjagtap479@gmail.com",
+          }
+        ]
+      },
+    ]
+  }
 
 }

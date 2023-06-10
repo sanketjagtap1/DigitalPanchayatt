@@ -1,10 +1,7 @@
 <ion-content [fullscreen]="true">
-<div class="d-flex justify-content-center py-5">
-  <ng-lottie width="300px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
-</div>
-<h2 class="text-center title">Log in</h2>
-<div class="wrapper">
-  <form (ngSubmit)="login()" #loginForm="ngForm" class="w-100 px-3">
+  <div class="wrapper">
+    <form (ngSubmit)="login()" #loginForm="ngForm" class="w-100 px-3">
+    <h2 class="text-center title">Log in</h2>
     <ion-item class="custom-item">
       <ion-input type="email" name="email" label="Email" labelPlacement="stacked" [(ngModel)]="email" required
         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
@@ -29,8 +26,8 @@
         <span *ngIf="loginForm.controls['password']?.errors?.['required']">Password is required</span>
       </ion-text>
     </ion-item>
-    <span class="d-block text-end w-100 my-3">Don't have an account?<a class="text-decoration-none" routerLink="signup"> Sign Up</a></span>
-    <ion-button expand="full" type="submit" [disabled]="loginForm.invalid">Login</ion-button>
+    <ion-button expand="full" type="submit" class="my-3" [disabled]="loginForm.invalid">Login</ion-button>
+    <span class="d-block text-end w-100 ">Don't have an account?<a class="text-decoration-none" routerLink="signup"> Sign Up</a></span>
   </form>
 </div>
 </ion-content>
