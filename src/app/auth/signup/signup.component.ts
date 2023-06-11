@@ -38,19 +38,18 @@ export class SignupComponent implements OnInit {
       if (res.length == 0) {
         this.authService.checkMobile(user.mobile).subscribe(res => {
           if (res.length == 0) {
-            this.authService.addUser(user).then(res=>{
+            this.authService.addUser(user).then(res => {
               console.log(res.id)
-              if(res.id){
-                this.authService.presentToast("User Created Successfully", "success").then(res=>{
-                  this.router.navigate(['/']).then(res=>{}).catch(err=>{}) 
-                }).catch(err=>{
+              if (res.id) {
+                this.authService.presentToast("User Created Successfully", "success").then(res => {
+                  this.router.navigate(['/']).then(res => { }).catch(err => { })
+                }).catch(err => {
                   console.log(err)
                 })
-
               }
-            }).catch(err=>{
+            }).catch(err => {
               console.log(err)
-              this.authService.presentToast("User Creation Failed", "danger").then(res=>{}).catch(err=>{console.log(err)}) 
+              this.authService.presentToast("User Creation Failed", "danger").then(res => { }).catch(err => { console.log(err) })
             })
           } else {
             this.authService.presentToast("Mobile No Already Exists", "danger").then(res => { }).catch(err => { console.log(err) })

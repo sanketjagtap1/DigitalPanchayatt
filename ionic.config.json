@@ -1,5 +1,7 @@
 {
   "name": "DigitalPanchayat",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
