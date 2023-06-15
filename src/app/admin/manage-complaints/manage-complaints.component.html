@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="container">
-    <h4 class="mt-5 ">Staff</h4>
+    <h4 class="mt-5 ">Complaints</h4>
     <div class="wrapper">
       <div class="row">
         <div class="col-12 ">
@@ -9,20 +9,20 @@
       </div>
       <table class="rwd-table">
         <tr>
-          <th>Sr No</th>
-          <th>Name</th>
-          <th>Mobile</th>
-          <th>Email</th>
+          <th>Complaint ID</th>
+          <th>Description</th>
+          <th>Created Date</th>
+          <th>Created BY</th>
           <th>Action</th>
         </tr>
         <tr *ngFor="let user of users | paginate: {itemsPerPage:5, currentPage:p};">
-          <td data-th="Sr No">{{user.sr}}</td>
-          <td data-th="Name">{{user.FirstName}} {{user.LastName}}</td>
-          <td data-th="Mobile">{{user.Mobile}}</td>
-          <td data-th="Email">{{user.Email}}</td>
+          <td data-th="Complaint ID">{{user.sr}}</td>
+          <td data-th="Description">{{user.fname}} {{user.lname}}</td>
+          <td data-th="Created Date">{{user.mobile}}</td>
+          <td data-th="Created BY">{{user.email}}</td>
           <td data-th="Action">
-            <button class="btn btn-success" (click)="deletUser()">E</button>
-            <button class="btn btn-danger">D</button>
+            <button class="btn btn-success mx-1"><ion-icon name="create" ></ion-icon></button>
+            <button class="btn btn-danger mx-1"><ion-icon name="trash" ></ion-icon></button>
           </td>
         </tr>
         <pagination-controls style="margin-top: 40px !important;" (pageChange)="p = $event"></pagination-controls>
@@ -51,7 +51,7 @@
           <ion-content class="ion-padding">
             <form #addStaffForm="ngForm" class="w-100 px-3">
               <ion-item class="custom-item">
-                <ion-input type="text" name="FirstName" label="First Name" labelPlacement="stacked" [(ngModel)]="firstName" required pattern="^[a-zA-Z]+$">
+                <ion-input type="text" name="firstName" label="First Name" labelPlacement="stacked" [(ngModel)]="firstName" required pattern="^[a-zA-Z]+$">
                 </ion-input>
               </ion-item>
               <ion-item
@@ -64,7 +64,7 @@
               </ion-item>
           
               <ion-item class="custom-item">
-                <ion-input type="text" name="LastName" label="Last Name" labelPlacement="stacked" [(ngModel)]="lastName" required pattern="^[a-zA-Z]+$">
+                <ion-input type="text" name="lastName" label="Last Name" labelPlacement="stacked" [(ngModel)]="lastName" required pattern="^[a-zA-Z]+$">
                 </ion-input>
               </ion-item>
               <ion-item
@@ -77,7 +77,7 @@
               </ion-item>
           
               <ion-item class="custom-item">
-                <ion-input type="text" name="Mobile" [maxlength]="10" label="Mobile" labelPlacement="stacked" [(ngModel)]="mobile" required pattern="^[6-9]\d{9}$">
+                <ion-input type="text" name="mobile" [maxlength]="10" label="Mobile" labelPlacement="stacked" [(ngModel)]="mobile" required pattern="^[6-9]\d{9}$">
                 </ion-input>
               </ion-item>
               <ion-item
@@ -90,7 +90,7 @@
               </ion-item>
               
               <ion-item class="custom-item">
-                <ion-input type="email" name="Email" label="Email" labelPlacement="stacked" [(ngModel)]="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+                <ion-input type="email" name="email" label="Email" labelPlacement="stacked" [(ngModel)]="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
                 </ion-input>
               </ion-item>
               <ion-item
@@ -102,7 +102,7 @@
                 </ion-text>
               </ion-item>
               <ion-item class="custom-item">
-                <ion-input type="password" name="Password" label="Password" labelPlacement="stacked" [(ngModel)]="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"></ion-input>
+                <ion-input type="password" name="password" label="Password" labelPlacement="stacked" [(ngModel)]="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"></ion-input>
               </ion-item>
               <ion-item
                 *ngIf="addStaffForm.controls['password']?.invalid && (addStaffForm.controls['password']?.dirty || addStaffForm.controls['password']?.touched)">
