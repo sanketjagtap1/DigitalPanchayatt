@@ -18,6 +18,7 @@ export class CommonService {
       console.log("Email check res========>", res)
       if (res.length == 0) {
         this.authService.checkMobile(user.Mobile).subscribe(res => {
+          console.log("Mobile response========>",res)
           if (res.length == 0) {
             this.authService.addUser(user).then(res => {
               console.log(res.id)

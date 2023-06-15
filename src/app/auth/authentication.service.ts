@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Firestore, collection, collectionData, docData, doc, deleteDoc, updateDoc, query, where} from '@angular/fire/firestore'
+import { Firestore, collection, collectionData, docData, doc, deleteDoc, updateDoc, query, where } from '@angular/fire/firestore'
 import { Router } from '@angular/router';
 import { addDoc } from '@firebase/firestore';
 import { ToastController } from '@ionic/angular';
@@ -9,9 +9,9 @@ import { ToastController } from '@ionic/angular';
 })
 export class AuthenticationService {
 
-  constructor(private firestore:Firestore, private toastController: ToastController, private router: Router) { }
+  constructor(private firestore: Firestore, private toastController: ToastController, private router: Router) { }
 
-  async presentToast( message:any, Color:any) {
+  async presentToast(message: any, Color: any) {
     const toast = await this.toastController.create({
       message: message,
       duration: 1500,
@@ -19,39 +19,44 @@ export class AuthenticationService {
       color: Color
     });
 
-    await toast.present().then((res)=>{
+    await toast.present().then((res) => {
       console.log(res)
 
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err)
     });
   }
 
-  getUsers(){
+  getUsers() {
     const users = collection(this.firestore, 'Users');
-    return collectionData(users, {idField: 'id'});
+    return collectionData(users, { idField: 'id' });
   }
 
-  getUserById(id:any){
+  getUserById(id: any) {
     const query = doc(this.firestore, `Users/${id}`);
-    return docData(query, {idField: 'id'})
+    return docData(query, { idField: 'id' })
   }
 
-  addUser(user:any){
+  addUser(user: any) {
     const query = collection(this.firestore, `Users`);
     return addDoc(query, user)
   }
 
-  deleteUser(id:any){
+  deleteUser(id: any) {
     const query = doc(this.firestore, `Users/${id}`);
     return deleteDoc(query)
   }
 
-  updateUser(user:any){
+  async updateUser(user: any) {
     const query = doc(this.firestore, `Users/${user.id}`);
-    return updateDoc(query, {FirstName: user.FirstName, LastName: user.LastName, Email: user.Email, UserRole: user.UserRole} )
+    return updateDoc(query, {
+      FirstName: user.FirstName,
+      LastName: user.LastName,
+      Email: user.Email,
+      Password: user.Password,
+      Mobile: user.Mobile
+    })
   }
-
   searchUserByEmailAndPassword(email: string, password: string) {
     console.log("Inside Search Method======>", email, password)
     const usersCollection = collection(this.firestore, 'Users');
@@ -69,7 +74,7 @@ export class AuthenticationService {
   checkMobile(mobile: string) {
     console.log("Inside Search Method======>", mobile)
     const usersCollection = collection(this.firestore, 'Users');
-    const q = query(usersCollection, where('Mobile', '==', mobile));
-    return collectionData(q, { idField: 'id' });
+    const mobileData = query(usersCollection, where('Mobile', '==', mobile));
+    return collectionData(mobileData, { idField: 'id' });
   }
 }

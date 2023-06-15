@@ -4,7 +4,7 @@
     <div class="wrapper">
       <div class="row">
         <div class="col-12 ">
-          <input class="form-control" type="text" placeholder="Search By Mobile" [(ngModel)]="firstName" (ngModelChange)="Search()">
+          <input class="form-control" type="text" placeholder="Search By Mobile" [(ngModel)]="mobile" (ngModelChange)="Search()">
         </div>
       </div>
       <table class="rwd-table">
@@ -21,8 +21,8 @@
           <td data-th="Mobile">{{user.Mobile}}</td>
           <td data-th="Email">{{user.Email}}</td>
           <td data-th="Action">
-            <button class="btn btn-success" (click)="deletUser()">E</button>
-            <button class="btn btn-danger">D</button>
+            <button class="btn btn-success" (click)="editUser(user.id)">E</button>
+            <button class="btn btn-danger" (click)="deletUser(user.id)">D</button>
           </td>
         </tr>
         <pagination-controls style="margin-top: 40px !important;" (pageChange)="p = $event"></pagination-controls>
@@ -30,12 +30,12 @@
 
 
       <ion-fab style="position: fixed; bottom: 30px; right: 20px;" slot="fixed" vertical="bottom" horizontal="end">
-        <ion-fab-button size="small"> 
+        <ion-fab-button size="small" (click)="setOpen(true)"  > 
           <ion-icon id="open-modal" expand="block" name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
 
-      <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ion-modal trigger="open-modal" [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
         <ng-template>
           <ion-header>
             <ion-toolbar>
@@ -44,7 +44,8 @@
               </ion-buttons>
               <ion-title class="text-center">Add</ion-title>
               <ion-buttons slot="end">
-                <ion-button (click)="confirm(addStaffForm.value)" [strong]="true">Confirm</ion-button>
+                <ion-button *ngIf="id==''" (click)="confirm(addStaffForm.value)" [strong]="true">Confirm</ion-button>
+                <ion-button *ngIf="id!==''" (click)="update(addStaffForm.value)" [strong]="true">Update</ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
