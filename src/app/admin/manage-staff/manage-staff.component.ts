@@ -115,4 +115,9 @@ export class ManageStaffComponent implements OnInit {
     }
   }
 
+
+  deletUser(id:any){
+    
+  }
+
 }
