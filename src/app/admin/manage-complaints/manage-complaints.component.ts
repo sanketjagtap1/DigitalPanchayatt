@@ -2,12 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+
 @Component({
-  selector: 'app-manage-user',
-  templateUrl: './manage-user.component.html',
-  styleUrls: ['./manage-user.component.scss'],
+  selector: 'app-manage-complaints',
+  templateUrl: './manage-complaints.component.html',
+  styleUrls: ['./manage-complaints.component.scss'],
 })
-export class ManageUserComponent  implements OnInit {
+export class ManageComplaintsComponent  implements OnInit {
+
   @ViewChild(IonModal) modal!: IonModal;
   @ViewChild('addStaffForm') addStaffForm!: NgForm;
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';

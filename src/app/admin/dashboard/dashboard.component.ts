@@ -39,6 +39,19 @@ export class DashboardComponent implements OnInit {
           }
         ]
       },
+      {
+        route: "complaints",
+        userType: "Complaints",
+        count: 84,
+        userData: [
+          {
+            fname: "Sanket",
+            lname: "Jagtap",
+            mobile: 8806328987,
+            email: "sanketjagtap479@gmail.com",
+          }
+        ]
+      },
     ]
   }
 
