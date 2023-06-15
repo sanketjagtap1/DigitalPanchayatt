@@ -40,8 +40,19 @@ export class SigninComponent implements OnInit {
       console.log("Email Password Response==========>", res)
 
       if (res.length != 0) {
-        if(res[0]['UserRole'] == 'Admin'){
-          this.router.navigate(['/admin'])
+        if (res[0]['UserRole'] == 'Admin') {
+          this.router.navigate(['/admin']).then(() => {
+            console.log(res)
+          }).catch((err) => { console.log(err) });
+        } else if (res[0]['UserRole'] == 'Staff') {
+          this.router.navigate(['/Staff']).then(() => {
+            console.log(res)
+          }).catch((err) => { console.log(err) });
+
+        } else {
+          this.router.navigate(['/User']).then(() => {
+            console.log(res)
+          }).catch((err) => { console.log(err) });
         }
         this.authService.presentToast('Login Success', 'success').then(() => {
         }).catch((err) => {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Firestore, collection, collectionData, docData, doc, deleteDoc, updateDoc, query, where} from '@angular/fire/firestore'
+import { Router } from '@angular/router';
 import { addDoc } from '@firebase/firestore';
 import { ToastController } from '@ionic/angular';
 
@@ -8,7 +9,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class AuthenticationService {
 
-  constructor(private firestore:Firestore, private toastController: ToastController) { }
+  constructor(private firestore:Firestore, private toastController: ToastController, private router: Router) { }
 
   async presentToast( message:any, Color:any) {
     const toast = await this.toastController.create({

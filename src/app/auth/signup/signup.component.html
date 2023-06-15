@@ -3,7 +3,7 @@
     <form (ngSubmit)="signUp(signupForm.value)" #signupForm="ngForm" class="w-100 px-3">
     <h2 class="text-center title">Sign Up</h2>
     <ion-item class="custom-item">
-      <ion-input type="text" name="firstName" label="First Name" labelPlacement="stacked" [(ngModel)]="firstName" required pattern="^[a-zA-Z]+$">
+      <ion-input type="text" name="FirstName" label="First Name" labelPlacement="stacked" [(ngModel)]="firstName" required pattern="^[a-zA-Z]+$">
       </ion-input>
     </ion-item>
     <ion-item
@@ -16,7 +16,7 @@
     </ion-item>
 
     <ion-item class="custom-item">
-      <ion-input type="text" name="lastName" label="Last Name" labelPlacement="stacked" [(ngModel)]="lastName" required pattern="^[a-zA-Z]+$">
+      <ion-input type="text" name="LastName" label="Last Name" labelPlacement="stacked" [(ngModel)]="lastName" required pattern="^[a-zA-Z]+$">
       </ion-input>
     </ion-item>
     <ion-item
@@ -29,7 +29,7 @@
     </ion-item>
 
     <ion-item class="custom-item">
-      <ion-input type="text" name="mobile" [maxlength]="10" label="Mobile" labelPlacement="stacked" [(ngModel)]="mobile" required pattern="^[6-9]\d{9}$">
+      <ion-input type="text" name="Mobile" [maxlength]="10" label="Mobile" labelPlacement="stacked" [(ngModel)]="mobile" required pattern="^[6-9]\d{9}$">
       </ion-input>
     </ion-item>
     <ion-item
@@ -42,7 +42,7 @@
     </ion-item>
     
     <ion-item class="custom-item">
-      <ion-input type="email" name="email" label="Email" labelPlacement="stacked" [(ngModel)]="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+      <ion-input type="email" name="Email" label="Email" labelPlacement="stacked" [(ngModel)]="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
       </ion-input>
     </ion-item>
     <ion-item
@@ -54,7 +54,7 @@
       </ion-text>
     </ion-item>
     <ion-item class="custom-item">
-      <ion-input type="password" name="password" label="Password" labelPlacement="stacked" [(ngModel)]="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"></ion-input>
+      <ion-input type="password" name="Password" label="Password" labelPlacement="stacked" [(ngModel)]="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"></ion-input>
     </ion-item>
     <ion-item
       *ngIf="signupForm.controls['password']?.invalid && (signupForm.controls['password']?.dirty || signupForm.controls['password']?.touched)">
