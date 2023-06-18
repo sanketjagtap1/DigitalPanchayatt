@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { AuthenticationService } from 'src/app/auth/authentication.service';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-manage-user',
   templateUrl: './manage-user.component.html',
@@ -20,69 +22,15 @@ export class ManageUserComponent  implements OnInit {
   UserRole = 'Staff';
   users: any
   p:number=1;
-  constructor() {
+  constructor(private authService: AuthenticationService) {
 
   }
 
   ngOnInit() {
-    this.users = [
-      {
-        sr: 1,
-        fname: "Sanket",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "8806328987",
-      },
-      {
-        sr: 2,
-        fname: "rahul",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "9022898699",
-      },
-      {
-        sr: 3,
-        fname: "akash",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "774383",
-      },
-      {
-        sr: 4,
-        fname: "mohit",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "915628",
-      },
-      {
-        sr: 5,
-        fname: "rahul",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "7272",
-      },
-      {
-        sr: 5,
-        fname: "rahul",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "7373",
-      },
-      {
-        sr: 6,
-        fname: "rahul",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "7474",
-      },
-      {
-        sr: 7,
-        fname: "rahul",
-        lname: "Sanket",
-        email: "Sanket",
-        mobile: "7575",
-      },
-    ]
+    this.authService.getUsers().subscribe(res=>{
+      console.log(res)
+      this.users = res.filter(user => user['UserRole'] === 'User');
+    })
   }
 
   cancel() {
@@ -112,5 +60,14 @@ export class ManageUserComponent  implements OnInit {
         return RegExp(this.firstName.toLocaleLowerCase()).exec(res.mobile.toLocaleLowerCase())
       })
     }
+  }
+
+  deleteUser(id:any){
+    console.log(id)
+    this.authService.deleteUser(id).then(res=>{
+      this.authService.presentToast('User Deleted Successfully', 'success')
+    }).catch(err=>{
+      this.authService.presentToast(err, 'danger')
+    })
   }
 }

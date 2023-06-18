@@ -27,36 +27,31 @@ export class AuthenticationService {
     });
   }
 
-  getUsers() {
-    const users = collection(this.firestore, 'Users');
+  getData(collectionName:any) {
+    const users = collection(this.firestore, collectionName);
     return collectionData(users, { idField: 'id' });
   }
 
-  getUserById(id: any) {
-    const query = doc(this.firestore, `Users/${id}`);
+  getDataById(id: any, collectionName:any) {
+    const query = doc(this.firestore, collectionName+`/${id}`);
     return docData(query, { idField: 'id' })
   }
 
-  addUser(user: any) {
-    const query = collection(this.firestore, `Users`);
-    return addDoc(query, user)
+  addData(data: any, collectionName:any) {
+    const query = collection(this.firestore, collectionName);
+    return addDoc(query, data)
   }
 
-  deleteUser(id: any) {
-    const query = doc(this.firestore, `Users/${id}`);
+  deleteData(id: any, collectionName:any) {
+    const query = doc(this.firestore, collectionName+`/${id}`);
     return deleteDoc(query)
   }
 
-  async updateUser(user: any) {
-    const query = doc(this.firestore, `Users/${user.id}`);
-    return updateDoc(query, {
-      FirstName: user.FirstName,
-      LastName: user.LastName,
-      Email: user.Email,
-      Password: user.Password,
-      Mobile: user.Mobile
-    })
+  async updateData(data: any, collectionName:any) {
+    const query = doc(this.firestore, collectionName+`/${data.id}`);
+    return updateDoc(query, data)
   }
+  
   searchUserByEmailAndPassword(email: string, password: string) {
     console.log("Inside Search Method======>", email, password)
     const usersCollection = collection(this.firestore, 'Users');

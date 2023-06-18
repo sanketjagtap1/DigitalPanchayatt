@@ -16,7 +16,7 @@
           <th>Action</th>
         </tr>
         <tr *ngFor="let user of users | paginate: {itemsPerPage:5, currentPage:p};">
-          <td data-th="Sr No">{{user.sr}}</td>
+          <td data-th="Sr No">{{user.id}}</td>
           <td data-th="Name">{{user.FirstName}} {{user.LastName}}</td>
           <td data-th="Mobile">{{user.Mobile}}</td>
           <td data-th="Email">{{user.Email}}</td>
